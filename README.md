@@ -10,7 +10,7 @@ AI coding tools write Swift like it is 2020. They use ObservableObject when @Obs
 
 ## The Solution
 
-Swift Agent Team is a set of six specialized agents plus a hook that evaluates every prompt. Each agent has deep knowledge of one domain and cannot forget it. The Swift Lead orchestrator coordinates the team and ensures the right specialists review every task.
+Swift Agent Team is a set of nine specialized agents plus a hook that evaluates every prompt. Each agent has deep knowledge of one domain and cannot forget it. The Swift Lead orchestrator coordinates the team and ensures the right specialists review every task.
 
 ## The Team
 
@@ -22,6 +22,9 @@ Swift Agent Team is a set of six specialized agents plus a hook that evaluates e
 | **on-device-ai-architect** | On-device AI deployment. MLX Swift, llama.cpp, Core ML, model selection by device tier, memory management, quantization, multi-backend fallback strategies. |
 | **mobile-a11y-specialist** | iOS and macOS accessibility. VoiceOver labels and traits, element grouping, focus management, Dynamic Type, custom actions, rotors, system preferences (Reduce Motion, Increase Contrast). |
 | **swiftui-specialist** | Modern SwiftUI patterns. @Observable, proper state management, NavigationStack, environment, view composition, performance, async data loading with .task. |
+| **app-review-guardian** | App Store Review Guidelines. Catches rejection risks: privacy manifests, IAP rules, HIG violations, entitlements, metadata, common guideline misinterpretations. |
+| **testing-specialist** | Swift Testing and XCTest. @Test, @Suite, #expect, parameterized tests, UI testing, mocking patterns, testable architecture, snapshot testing, code coverage. |
+| **swift-security-specialist** | iOS/macOS security. Keychain Services, CryptoKit, biometric auth (Face ID/Touch ID), ATS, privacy manifests, certificate pinning, Secure Enclave, data protection. |
 
 ## How It Works
 
@@ -92,6 +95,9 @@ Start Claude Code in your Swift project and type `/agents`. You should see:
   on-device-ai-architect
   mobile-a11y-specialist
   swiftui-specialist
+  app-review-guardian
+  testing-specialist
+  swift-security-specialist
 ```
 
 ## Usage
@@ -120,6 +126,9 @@ Claude: [Hook fires, swift-lead activates]
 /mobile-a11y-specialist audit the accessibility of ProfileView.swift
 /swiftui-specialist review the navigation stack implementation
 /swift-lead full review of the chat feature
+/app-review-guardian check this app for App Store rejection risks
+/testing-specialist write tests for the UserService
+/swift-security-specialist audit how we store auth tokens
 ```
 
 ## What Each Agent Covers
@@ -174,6 +183,40 @@ Claude: [Hook fires, swift-lead activates]
 - LazyVStack/LazyHStack for performance
 - Common mistakes (wrong property wrappers, heavy body computation, index-based ForEach IDs)
 
+### app-review-guardian
+- Top rejection reasons and how to avoid them (2.1 Completeness, 2.3 Metadata, 4.0 Design, 5.1.1 Privacy)
+- Privacy manifest (PrivacyInfo.xcprivacy) required API reason codes
+- In-App Purchase rules (what requires IAP, what does not)
+- Human Interface Guidelines compliance (navigation, modals, Dark Mode, Dynamic Type)
+- Entitlement justification (camera, location, push, HealthKit, background modes)
+- Widgets and Live Activities requirements
+- App Tracking Transparency implementation
+- EU Digital Markets Act considerations
+
+### testing-specialist
+- Swift Testing framework: @Test, @Suite, #expect, #require, confirmation
+- Parameterized tests and custom tags
+- Test scoping traits and serialized suites
+- XCTest for UI testing and performance testing
+- Page object pattern for UI test maintainability
+- Protocol-based dependency injection for testable architecture
+- Mock patterns and environment-based injection
+- Deterministic async testing with clock injection
+- Snapshot testing with swift-snapshot-testing (Dark Mode, Dynamic Type)
+- Common mistakes: flaky async tests, shared mutable state, testing implementation instead of behavior
+
+### swift-security-specialist
+- Keychain Services: SecItemAdd, SecItemCopyMatching, SecItemUpdate, SecItemDelete
+- kSecAttrAccessible values and when to use each
+- Data Protection file encryption classes
+- CryptoKit: AES-GCM, ChaChaPoly, SHA-256, HMAC, P256 signing, Curve25519 key agreement
+- Secure Enclave key storage
+- Biometric authentication (Face ID, Touch ID) with LocalAuthentication
+- App Transport Security configuration and exception domains
+- Privacy manifest (PrivacyInfo.xcprivacy) required API declarations
+- Certificate pinning for sensitive API connections
+- Secure coding: no logged secrets, memory clearing, input validation, path traversal prevention
+
 ## Using with A11y Agent Team
 
 If you also use the [A11y Agent Team](https://github.com/taylorarndt/a11y-agent-team) for web accessibility, both can coexist. Install the Swift agents at the project level in your Swift projects and the A11y agents globally or in your web projects. The hooks are different and do not conflict.
@@ -185,7 +228,7 @@ If you also use the [A11y Agent Team](https://github.com/taylorarndt/a11y-agent-
 If agents stop loading silently, increase the budget:
 
 ```bash
-export SLASH_COMMAND_TOOL_CHAR_BUDGET=30000
+export SLASH_COMMAND_TOOL_CHAR_BUDGET=50000
 ```
 
 Add to your `~/.zshrc` or `~/.bashrc` to make it permanent.
@@ -202,6 +245,9 @@ swift-agent-team/
       on-device-ai-architect.md      # MLX, llama.cpp, Core ML
       mobile-a11y-specialist.md      # iOS/macOS accessibility
       swiftui-specialist.md          # SwiftUI patterns
+      app-review-guardian.md         # App Store review compliance
+      testing-specialist.md          # Swift Testing, XCTest
+      swift-security-specialist.md   # Security, Keychain, CryptoKit
     hooks/
       swift-team-eval.sh             # Hook (macOS/Linux)
       swift-team-eval.ps1            # Hook (Windows)
@@ -218,7 +264,7 @@ Found a gap? Open an issue or PR. Contributions welcome:
 - Framework-specific patterns (MapKit, HealthKit, StoreKit)
 - watchOS and visionOS specialist knowledge
 - Xcode build system and SPM best practices
-- Testing patterns (Swift Testing, XCTest, UI testing)
+- Performance profiling and optimization patterns
 
 If you find this useful, please star the repo.
 
