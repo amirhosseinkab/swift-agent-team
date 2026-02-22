@@ -1,12 +1,61 @@
 # Swift Agent Team
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/taylorarndt/swift-agent-team)](https://github.com/taylorarndt/swift-agent-team/stargazers)
+[![Swift 6.2](https://img.shields.io/badge/Swift-6.2-F05138.svg)](https://swift.org)
+[![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS-lightgrey.svg)](https://developer.apple.com)
+[![Claude Code](https://img.shields.io/badge/Built%20for-Claude%20Code-blueviolet.svg)](https://docs.anthropic.com/en/docs/claude-code)
+
 **A team of specialized Swift agents for Claude Code.**
 
 Built by [Taylor Arndt](https://github.com/taylorarndt) for Swift developers who want AI that actually understands modern Swift. Swift 6.2 strict concurrency, Apple Foundation Models, on-device AI, SwiftUI best practices, and mobile accessibility -- enforced on every prompt.
 
+> Also from the author: **[A11y Agent Team](https://github.com/taylorarndt/a11y-agent-team)** — 19 accessibility agents for web development in Claude Code, GitHub Copilot, and Claude Desktop.
+
 ## The Problem
 
 AI coding tools write Swift like it is 2020. They use ObservableObject when @Observable exists. They ignore actor isolation. They produce views with no accessibility modifiers. They have never heard of Apple Foundation Models or @Generable. They use Task.detached for no reason. They put heavy work on @MainActor. They write custom controls that VoiceOver cannot read.
+
+## Before / After
+
+**Without Swift Agent Team** — AI writes this:
+
+```swift
+class SettingsViewModel: ObservableObject {
+    @Published var notifications = false
+}
+
+struct SettingsView: View {
+    @StateObject var vm = SettingsViewModel()
+    var body: some View {
+        NavigationView {
+            Toggle("Notifications", isOn: $vm.notifications)
+        }
+    }
+}
+```
+
+**With Swift Agent Team** — AI writes this:
+
+```swift
+@Observable
+class SettingsViewModel {
+    var notifications = false
+}
+
+struct SettingsView: View {
+    @State private var vm = SettingsViewModel()
+    var body: some View {
+        NavigationStack {
+            Toggle("Notifications", isOn: $vm.notifications)
+                .accessibilityLabel("Push notifications")
+                .accessibilityHint("Enables or disables push notifications for this app")
+        }
+    }
+}
+```
+
+Modern `@Observable` instead of `ObservableObject`. `NavigationStack` instead of deprecated `NavigationView`. Accessibility labels and hints so VoiceOver users know what the toggle does. That is the difference.
 
 ## The Solution
 
