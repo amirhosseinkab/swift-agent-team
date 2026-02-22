@@ -88,20 +88,36 @@ For tasks that don't involve Swift code, the hook is ignored and Claude proceeds
 
 ## Installation
 
-### Project-Level (Recommended for Swift Projects)
+### One-Liner (Recommended)
 
-Copy the `.claude` folder into your Swift project root:
+```bash
+curl -fsSL https://raw.githubusercontent.com/taylorarndt/swift-agent-team/main/install.sh | bash
+```
+
+The installer downloads the repo, copies agents and hooks, configures `settings.json`, and optionally sets up daily auto-updates. It will prompt you to choose project-level or global install.
+
+### Non-Interactive
+
+```bash
+# Install globally (no prompts)
+curl -fsSL https://raw.githubusercontent.com/taylorarndt/swift-agent-team/main/install.sh | bash -s -- --global
+
+# Install to current project (no prompts)
+curl -fsSL https://raw.githubusercontent.com/taylorarndt/swift-agent-team/main/install.sh | bash -s -- --project
+```
+
+### Manual Install
+
+If you prefer to do it yourself:
+
+**Project-level** (recommended, travels with the repo):
 
 ```bash
 git clone https://github.com/taylorarndt/swift-agent-team.git
 cp -r swift-agent-team/.claude /path/to/your/swift-project/
 ```
 
-The agents and hook travel with the repo. Your whole team benefits.
-
-### Global Install
-
-Install to `~/.claude/` so the agents are available across all projects:
+**Global** (available in all projects):
 
 ```bash
 git clone https://github.com/taylorarndt/swift-agent-team.git
@@ -131,6 +147,25 @@ Then merge the hook into your `~/.claude/settings.json`:
 ```
 
 Use the absolute path for global installs.
+
+### Updating
+
+If you enabled auto-updates during install, agents update daily at 9:00 AM. To update manually:
+
+```bash
+bash update.sh              # Update global install
+bash update.sh --project    # Update project install
+```
+
+### Uninstalling
+
+```bash
+bash uninstall.sh           # Interactive
+bash uninstall.sh --global  # Remove global install
+bash uninstall.sh --project # Remove from current project
+```
+
+The uninstaller removes agents, hooks, settings entries, and auto-update schedulers.
 
 ### Verify
 
@@ -300,22 +335,30 @@ swift-agent-team/
     hooks/
       swift-team-eval.sh             # Hook (macOS/Linux)
       swift-team-eval.ps1            # Hook (Windows)
-    settings.json                    # Example hook config
+    settings.json                    # Hook config
+  install.sh                         # Installer (macOS/Linux)
+  update.sh                          # Manual update script
+  uninstall.sh                       # Uninstaller
   LICENSE
   README.md
 ```
 
 ## Contributing
 
-Found a gap? Open an issue or PR. Contributions welcome:
+I have been writing Swift for less than two years. I built these agents to help me learn faster and write better code, and I know there are patterns and frameworks I have not covered yet. If you know Swift better than I do -- and many of you will -- your contributions will make these agents better for everyone.
 
-- Additional Swift evolution proposals coverage
-- Framework-specific patterns (MapKit, HealthKit, StoreKit)
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Here are some areas where help is especially welcome:
+
+- Additional Swift Evolution proposals coverage
+- Framework-specific patterns (MapKit, HealthKit, StoreKit, CloudKit, ARKit)
 - watchOS and visionOS specialist knowledge
 - Xcode build system and SPM best practices
 - Performance profiling and optimization patterns
+- Corrections to anything the agents get wrong
 
-If you find this useful, please star the repo.
+Found an agent gap? Use the [Agent Gap](https://github.com/taylorarndt/swift-agent-team/issues/new?template=agent_gap.yml) issue template. These reports directly improve agent instructions.
+
+If you find this useful, please star the repo. It helps others find it.
 
 ## License
 
@@ -323,4 +366,4 @@ MIT
 
 ## About the Author
 
-Built by [Taylor Arndt](https://github.com/taylorarndt), a developer and accessibility specialist who uses assistive technology daily. I build AI tools that write code the way it should be written -- accessible, concurrent, and modern.
+Built by [Taylor Arndt](https://github.com/taylorarndt), a developer and accessibility specialist who is blind and uses assistive technology daily. I build AI tools that write code the way it should be written -- accessible, concurrent, and modern. I have been learning Swift for less than two years and built these agents to make sure AI keeps up with the language as it evolves. Contributions from experienced Swift developers are genuinely welcome.
