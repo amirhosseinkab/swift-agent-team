@@ -8,7 +8,7 @@
 
 **A team of specialized Swift agents for Claude Code.**
 
-Built by [Taylor Arndt](https://github.com/taylorarndt) for Swift developers who want AI that actually understands modern Swift. Swift 6.2 strict concurrency, Apple Foundation Models, on-device AI, SwiftUI best practices, and mobile accessibility -- enforced on every prompt.
+Built by [Taylor Arndt](https://github.com/taylorarndt) for Swift developers who want AI that actually understands modern Swift. Swift 6.2 strict concurrency, Apple Foundation Models, on-device AI, SwiftUI best practices, and mobile accessibility, enforced on every prompt.
 
 > Also from the author: **[A11y Agent Team](https://github.com/taylorarndt/a11y-agent-team)** — 19 accessibility agents for web development in Claude Code, GitHub Copilot, and Claude Desktop.
 
@@ -16,9 +16,9 @@ Built by [Taylor Arndt](https://github.com/taylorarndt) for Swift developers who
 
 AI coding tools write Swift like it is 2020. They use ObservableObject when @Observable exists. They ignore actor isolation. They produce views with no accessibility modifiers. They have never heard of Apple Foundation Models or @Generable. They use Task.detached for no reason. They put heavy work on @MainActor. They write custom controls that VoiceOver cannot read.
 
-## Before / After
+## Before and After
 
-**Without Swift Agent Team** — AI writes this:
+**Without Swift Agent Team:**
 
 ```swift
 class SettingsViewModel: ObservableObject {
@@ -35,7 +35,7 @@ struct SettingsView: View {
 }
 ```
 
-**With Swift Agent Team** — AI writes this:
+**With Swift Agent Team:**
 
 ```swift
 @Observable
@@ -71,15 +71,15 @@ Swift Agent Team is a set of nine specialized agents plus a hook that evaluates 
 | **on-device-ai-architect** | On-device AI deployment. MLX Swift, llama.cpp, Core ML, model selection by device tier, memory management, quantization, multi-backend fallback strategies. |
 | **mobile-a11y-specialist** | iOS and macOS accessibility. VoiceOver labels and traits, element grouping, focus management, Dynamic Type, custom actions, rotors, system preferences (Reduce Motion, Increase Contrast). |
 | **swiftui-specialist** | Modern SwiftUI patterns. @Observable, proper state management, NavigationStack, environment, view composition, performance, async data loading with .task. |
-| **app-review-guardian** | App Store Review Guidelines. Catches rejection risks: privacy manifests, IAP rules, HIG violations, entitlements, metadata, common guideline misinterpretations. |
+| **app-review-guardian** | App Store Review Guidelines. Catches rejection risks before you submit: privacy manifests, IAP rules, HIG violations, entitlements, metadata. |
 | **testing-specialist** | Swift Testing and XCTest. @Test, @Suite, #expect, parameterized tests, UI testing, mocking patterns, testable architecture, snapshot testing, code coverage. |
-| **swift-security-specialist** | iOS/macOS security. Keychain Services, CryptoKit, biometric auth (Face ID/Touch ID), ATS, privacy manifests, certificate pinning, Secure Enclave, data protection. |
+| **swift-security-specialist** | iOS and macOS security. Keychain Services, CryptoKit, biometric auth (Face ID and Touch ID), ATS, privacy manifests, certificate pinning, Secure Enclave, data protection. |
 
 ## How It Works
 
-A `UserPromptSubmit` hook fires on every prompt. If the task involves Swift code, the hook instructs Claude to delegate to the **swift-lead** first. The lead evaluates the task and invokes the relevant specialists. Multiple specialists can review a single task -- a SwiftUI view with async data loading and accessibility needs gets reviewed by the swiftui-specialist, concurrency-specialist, and mobile-a11y-specialist.
+A `UserPromptSubmit` hook fires on every prompt. If the task involves Swift code, the hook instructs Claude to delegate to the **swift-lead** first. The lead evaluates the task and invokes the relevant specialists. Multiple specialists can review a single task. A SwiftUI view with async data loading and accessibility needs gets reviewed by the swiftui-specialist, concurrency-specialist, and mobile-a11y-specialist.
 
-For tasks that don't involve Swift code, the hook is ignored and Claude proceeds normally.
+For tasks that do not involve Swift code, the hook is ignored and Claude proceeds normally.
 
 ## Prerequisites
 
@@ -251,7 +251,7 @@ Claude: [Hook fires, swift-lead activates]
 - Element grouping (.combine, .ignore, .contain)
 - .accessibilityRepresentation for custom controls
 - Focus management with @AccessibilityFocusState
-- Sheet/dialog focus return
+- Sheet and dialog focus return
 - Custom actions and rotors
 - Dynamic Type with @ScaledMetric and adaptive layouts
 - 44x44pt minimum tap targets
@@ -264,7 +264,7 @@ Claude: [Hook fires, swift-lead activates]
 - NavigationStack and programmatic navigation
 - View composition and custom ViewModifiers
 - .task modifier for async data loading
-- LazyVStack/LazyHStack for performance
+- LazyVStack and LazyHStack for performance
 - Common mistakes (wrong property wrappers, heavy body computation, index-based ForEach IDs)
 
 ### app-review-guardian
@@ -345,7 +345,7 @@ swift-agent-team/
 
 ## Contributing
 
-I have been writing Swift for less than two years. I built these agents to help me learn faster and write better code, and I know there are patterns and frameworks I have not covered yet. If you know Swift better than I do -- and many of you will -- your contributions will make these agents better for everyone.
+I have been writing Swift for less than two years. I built these agents to help me learn faster and write better code, and I know there are patterns and frameworks I have not covered yet. If you know Swift better than I do, and many of you will, your contributions will make these agents better for everyone.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Here are some areas where help is especially welcome:
 
@@ -366,4 +366,4 @@ MIT
 
 ## About the Author
 
-Built by [Taylor Arndt](https://github.com/taylorarndt), a developer and accessibility specialist who is blind and uses assistive technology daily. I build AI tools that write code the way it should be written -- accessible, concurrent, and modern. I have been learning Swift for less than two years and built these agents to make sure AI keeps up with the language as it evolves. Contributions from experienced Swift developers are genuinely welcome.
+Built by [Taylor Arndt](https://github.com/taylorarndt), COO at [Techopolis](https://github.com/techopolis-group). Developer and accessibility specialist. I build AI agent teams that write code the way it should be written. Accessible, concurrent, and modern. I have been learning Swift for less than two years and built these agents to make sure AI keeps up with the language as it evolves. Contributions from experienced Swift developers are genuinely welcome.
