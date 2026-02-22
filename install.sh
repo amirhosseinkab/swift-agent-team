@@ -84,7 +84,7 @@ if [ -z "$choice" ]; then
   echo "                  (available in all your projects)"
   echo ""
   printf "  Choose [1/2]: "
-  read -r choice
+  read -r choice < /dev/tty
 fi
 
 case "$choice" in
@@ -236,7 +236,7 @@ if [ "$choice" = "2" ] && [ -t 0 ]; then
   echo "  This checks GitHub daily for new agents and improvements."
   echo ""
   printf "  Enable auto-updates? [y/N]: "
-  read -r auto_update
+  read -r auto_update < /dev/tty
 
   if [ "$auto_update" = "y" ] || [ "$auto_update" = "Y" ]; then
     UPDATE_SCRIPT="$TARGET_DIR/.swift-agent-team-update.sh"
