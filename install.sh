@@ -13,11 +13,17 @@
 set -e
 
 # Determine source: running from repo clone or piped from curl?
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd)"
 DOWNLOADED=false
 
-if [ ! -d "$SCRIPT_DIR/.claude/agents" ]; then
-  # Running from curl pipe or without repo — download first
+# When piped from curl, BASH_SOURCE is empty — always download in that case
+if [ -z "${BASH_SOURCE[0]}" ] || [ "${BASH_SOURCE[0]}" = "bash" ] || [ "${BASH_SOURCE[0]}" = "/bin/bash" ]; then
+  SCRIPT_DIR=""
+else
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)"
+fi
+
+if [ -z "$SCRIPT_DIR" ] || [ ! -d "$SCRIPT_DIR/.claude/agents" ] || [ ! -f "$SCRIPT_DIR/.claude/hooks/swift-team-eval.sh" ]; then
+  # Running from curl pipe or without full repo — download first
   DOWNLOADED=true
   TMPDIR_DL="$(mktemp -d)"
   echo ""
