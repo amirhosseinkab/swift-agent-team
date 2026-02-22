@@ -70,21 +70,28 @@ for arg in "$@"; do
 done
 
 if [ -z "$choice" ]; then
-  echo ""
-  echo "  Swift Agent Team Installer"
-  echo "  Built by Taylor Arndt"
-  echo "  ========================="
-  echo ""
-  echo "  Where would you like to install?"
-  echo ""
-  echo "  1) Project   - Install to .claude/ in the current directory"
-  echo "                  (recommended, check into version control)"
-  echo ""
-  echo "  2) Global    - Install to ~/.claude/"
-  echo "                  (available in all your projects)"
-  echo ""
-  printf "  Choose [1/2]: "
-  read -r choice < /dev/tty
+  if [ -t 0 ] || [ -c /dev/tty ]; then
+    echo ""
+    echo "  Swift Agent Team Installer"
+    echo "  Built by Taylor Arndt"
+    echo "  ========================="
+    echo ""
+    echo "  Where would you like to install?"
+    echo ""
+    echo "  1) Project   - Install to .claude/ in the current directory"
+    echo "                  (recommended, check into version control)"
+    echo ""
+    echo "  2) Global    - Install to ~/.claude/"
+    echo "                  (available in all your projects)"
+    echo ""
+    printf "  Choose [1/2]: "
+    read -r choice < /dev/tty 2>/dev/null || choice="2"
+  else
+    echo ""
+    echo "  No interactive terminal detected. Defaulting to global install."
+    echo "  Use --project or --global to specify."
+    choice="2"
+  fi
 fi
 
 case "$choice" in
@@ -230,13 +237,13 @@ if command -v git &>/dev/null && [ -d "$SCRIPT_DIR/.git" ]; then
 fi
 
 # Auto-update setup (global install only, interactive only)
-if [ "$choice" = "2" ] && [ -t 0 ]; then
+if [ "$choice" = "2" ]; then
   echo ""
   echo "  Would you like to enable auto-updates?"
   echo "  This checks GitHub daily for new agents and improvements."
   echo ""
   printf "  Enable auto-updates? [y/N]: "
-  read -r auto_update < /dev/tty
+  read -r auto_update < /dev/tty 2>/dev/null || auto_update="n"
 
   if [ "$auto_update" = "y" ] || [ "$auto_update" = "Y" ]; then
     UPDATE_SCRIPT="$TARGET_DIR/.swift-agent-team-update.sh"
